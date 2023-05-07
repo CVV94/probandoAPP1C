@@ -10,8 +10,8 @@ class Task(models.Model):
     important=models.BooleanField(default=False)        #por defecto la tarea no es importante
     user= models.ForeignKey(User, on_delete=models.CASCADE)                       #hace llamdo a otra tabla User, se tiene que importar # eliminacion en cascada
 
-    def __str__(self) -> str:
-        return self.title
+    def __str__(self) -> str:                           #para mostrar el titulo de la tarea
+        return self.title +' (Responsable de cumplimiento: '+ self.user.username +' )'
 
     #crear superusuario
     #py manage.py createsuperuser
