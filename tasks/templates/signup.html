@@ -1,8 +1,19 @@
-<h1>signup</h1>
-<form action="/signup/" method="POST">
-    {% csrf_token %}       /* es un token que cumple la funcion de seguridad para no ser replicado en el servidor*/
-    {{form.as_p }}  /*.as_p  es una propiedad que ordena el formulario*/
-    <button>
-        signup
-    </button>
-</form>
+{% extends 'base.html' %}
+
+{% block content %}                                 
+    <h1>signup</h1>
+    {{error}}
+    
+    <form action="/signup/" method="POST">
+        {% csrf_token %}       {% comment %}es un token que cumple la funcion de seguridad para no ser replicado en el servidor {% endcomment %}
+        {{form.as_p }}      {% comment %} .as_p  es una propiedad que ordena el formulario {% endcomment %}
+        <button>
+            signup
+        </button>
+
+    </form>
+
+{% endblock %}
+
+
+
