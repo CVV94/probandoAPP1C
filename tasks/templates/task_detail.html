@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+
+            <h1>{{task.title}}</h1>
+            {{error}}
+            <div class="mb-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form}}                        {% comment "actualizar" %}Mediante la visualizacion de la instancia del formulario se podra actualizar en el mismo{% endcomment %}
+                    <button class="btn btn-primary mb-3 mt-3">
+                        Update
+                    </button>
+                </form>
+                
+                <form action="{% url 'complete_task' task.id %}" method='POST'>      {% comment "completar tarea" %}{% endcomment %}
+                    {% csrf_token %}
+                    <button class="btn btn-primary mb-3">
+                        Completar Tarea
+                    </button>
+                </form>
+                <form action="{% url 'delete_task' task.id %}" method='POST'>      {% comment "eliminar tarea" %}{% endcomment %}
+                    {% csrf_token %}
+                    <button class="btn btn-primary mb-3">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+{% endblock  %}

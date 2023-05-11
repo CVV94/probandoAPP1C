@@ -1,0 +1,33 @@
+{% extends 'base.html' %}                                 {% comment %}   extend es herencia {% endcomment %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-5">         {% comment "offset -md-4" %} colocar la fila al medio{% endcomment %}
+
+            <h1 class="text-center py-5">tasks</h1>
+            <ul class="list-group">
+
+                {% for task in tasks %}    {% comment %}   Realizar un recorrido for en tareas desde su funcion {% endcomment %}
+                <a class="list-group-item" href="{% url 'task_detail' task.id %} ">
+                    <header class="d-flex justify-content-between">
+                        {% if task.important %}        {% comment %}   Si la tarea es importante {% endcomment %}
+                        <strong>{{task.title}}</strong>    {% comment "strong" %} Resalta lo que esta dentro{% endcomment %}
+                        <p>{{task.user.username}}</p>
+                        {% else %}
+                            {{task.title}}                 {% comment "No importante" %}solo muestra el nombre sin resaltar{% endcomment %}
+                            <p>{{task.user.username}}</p>
+                        {% endif %}
+
+                    </header>
+                        <p>{{task.description}}</p>
+                        <p>{{task.datecompleted|date:'M j Y:i'}}</p> {% comment "fecha de completado" %}{% endcomment %}
+                </a>
+                
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
